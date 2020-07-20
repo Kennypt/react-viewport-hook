@@ -1,6 +1,6 @@
 {
   "name": "react-viewport-hook",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React hook to return configured device viewport type with help of a context provider",
   "main": "lib/index.js",
   "scripts": {
