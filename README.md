@@ -30,6 +30,7 @@ But you can customize the viewports to use on the provider component.
 ### ViewportProvider
 
 This component updates the viewport type when the screen hits a viewport breakpoint.
+**Important!** Your app should only have one viewport provider on the react tree.
 
 #### Props
 
