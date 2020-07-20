@@ -1,0 +1,17 @@
+{
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "quotes": [2, "single", {
+      "avoidEscape": true
+    }]
+  },
+  "settings": {
+    "react": {
+      "version": "16.13.1"
+    }
+  }
+}
