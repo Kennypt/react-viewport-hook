@@ -6,4 +6,4 @@ const viewportTypes = Object.freeze({
 
 export default viewportTypes;
 
-export const defaultViewportType = viewportTypes.PHONE;
+export const defaultViewportType = viewportTypes.DESKTOP;
