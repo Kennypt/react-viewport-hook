@@ -36,49 +36,53 @@ const ViewportContext = createContext(buildViewportData(defaultViewportType));
 const { Provider } = ViewportContext;
 
 export const ViewportProvider = ({
-  children,
-  customViewportTypes,
-  viewportType,
-}) => {
-  let viewportTypeValues;
-  if (customViewportTypes) {
-    mediaList = mapMediaList(customViewportTypes);
-    viewportTypeValues = customViewportTypes.map(({ viewportType}) => viewportType);
-  }
-
-  let currentViewportType = isClientSide
-    ? findCurrentViewportType(mediaList)
-    : mapServerSideViewportType({
-        viewportType,
-        mediaList,
-        isCustomMediaList: !!customViewportTypes,
-      });
-
-  const [viewportData, setViewportData] = useState(
-    buildViewportData(currentViewportType, viewportTypeValues)
-  );
-
-  useEffect(() => {
-    const onScreenChange = (newViewportType) => {
-      setViewportData(buildViewportData(newViewportType, viewportTypeValues));
-    };
-
-    subscribeMediaWatcher({ mediaList, mediaListener: onScreenChange });
-
-    const clientViewportType = findCurrentViewportType(mediaList);
-    if (clientViewportType !== currentViewportType) {
-      setViewportData(
-        buildViewportData(clientViewportType, viewportTypeValues)
+    children,
+    customViewportTypes,
+    initialViewportType,
+  }) => {
+    let viewportTypeValues;
+    if (customViewportTypes) {
+      mediaList = mapMediaList(customViewportTypes);
+      viewportTypeValues = customViewportTypes.map(
+        ({ viewportType }) => viewportType
       );
     }
-    return unsubscribeMediaWatcher;
-  });
 
-  return <Provider value={viewportData}>{children}</Provider>;
-};
+    let currentViewportType = isClientSide
+      ? findCurrentViewportType(mediaList)
+      : mapServerSideViewportType({
+          initialViewportType,
+          mediaList,
+          isCustomMediaList: !!customViewportTypes,
+        });
+
+    const [viewportData, setViewportData] = useState(
+      buildViewportData(currentViewportType, viewportTypeValues)
+    );
+
+    useEffect(() => {
+      const onScreenChange = (newViewportType) => {
+        setViewportData(
+          buildViewportData(newViewportType, viewportTypeValues)
+        );
+      };
+
+      subscribeMediaWatcher({ mediaList, mediaListener: onScreenChange });
+
+      const clientViewportType = findCurrentViewportType(mediaList);
+      if (clientViewportType !== currentViewportType) {
+        setViewportData(
+          buildViewportData(clientViewportType, viewportTypeValues)
+        );
+      }
+      return unsubscribeMediaWatcher;
+    });
+
+    return <Provider value={viewportData}>{children}</Provider>;
+  };
 
 ViewportProvider.propTypes = {
-  viewportType: PropTypes.string,
+  initialViewportType: PropTypes.string,
   customViewportTypes: PropTypes.arrayOf(
     PropTypes.shape({
       viewportType: PropTypes.string.isRequired,
@@ -90,7 +94,7 @@ ViewportProvider.propTypes = {
 };
 
 ViewportProvider.defaultProps = {
-  viewportType: undefined,
+  initialViewportType: defaultViewportType,
   children: null,
   customViewportTypes: undefined,
 };
