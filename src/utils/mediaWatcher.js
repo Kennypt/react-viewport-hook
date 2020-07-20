@@ -20,7 +20,7 @@ export const subscribeMediaWatcher = ({ mediaList, mediaListener }) => {
   mediaList.forEach(({ query, viewportType }) => {
     const listener = buildListener({ viewportType, mediaListener });
 
-    mediaWatcher = matchMedia(query);
+    const mediaWatcher = matchMedia(query);
     mediaWatcher.addListener(listener);
     mediaWatcherList.push({ watcher: mediaWatcher, listener });
   });

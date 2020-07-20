@@ -9,7 +9,7 @@ import mapMediaList from '../utils/mapMediaList';
 import { subscribeMediaWatcher, unsubscribeMediaWatcher } from '../utils/mediaWatcher';
 
 const isClientSide = checkIfClientSide();
-const defaultViewportTypes = Object.keys(viewportTypesEnum);
+const defaultViewportTypes = Object.values(viewportTypesEnum);
 let mediaList = mapMediaList();
 
 const buildViewportData = (
@@ -26,9 +26,11 @@ const buildViewportData = (
   for (let i = 0; i < allViewportTypes.length; i++) {
     if (allViewportTypes[i] === viewportType) {
       viewportData[`is${capitalizeString(viewportType)}`] = true;
-      return viewportData;
+      break;
     }
   }
+
+  return viewportData;
 };
 
 const ViewportContext = createContext(buildViewportData(defaultViewportType));
@@ -51,7 +53,7 @@ export const ViewportProvider = ({
     let currentViewportType = isClientSide
       ? findCurrentViewportType(mediaList)
       : mapServerSideViewportType({
-          initialViewportType,
+          serverViewportType: initialViewportType,
           mediaList,
           isCustomMediaList: !!customViewportTypes,
         });

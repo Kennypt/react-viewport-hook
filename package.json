@@ -1,7 +1,7 @@
 {
   "name": "react-viewport-hook",
-  "version": "1.0.1",
-  "description": "React hook to return configured device viewport type",
+  "version": "1.0.2",
+  "description": "React hook to return configured device viewport type with help of a context provider",
   "main": "lib/index.js",
   "scripts": {
     "build": "npx babel src --out-dir lib",

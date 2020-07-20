@@ -2,12 +2,13 @@ module.exports = function(api) {
   api.cache(true);
 
   return {
-    compact: true,
+    compact: false,
+    sourceMaps: 'inline',
     presets: [
       [
-        "@babel/preset-env",
+        '@babel/preset-env',
         {
-          useBuiltIns: "entry",
+          useBuiltIns: 'entry',
           modules: 'cjs',
           targets: {
             esmodules: true,
@@ -15,7 +16,7 @@ module.exports = function(api) {
           corejs: '3',
         },
       ],
-      "@babel/preset-react",
+      '@babel/preset-react',
     ],
     plugins: [],
     env: {
@@ -23,7 +24,7 @@ module.exports = function(api) {
         plugins: [],
       },
       production: {
-        plugins: ["transform-react-remove-prop-types"],
+        plugins: ['transform-react-remove-prop-types'],
       },
     },
   };

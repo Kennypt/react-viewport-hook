@@ -5,7 +5,7 @@ export default (breakpointOptions = breakpointDefaultOptions) => {
     const mediaQueryParams = [];
 
     // Prepare the media types
-    const { minWidth, maxWidth, deviceType } = mediaOptions;
+    const { minWidth, maxWidth, viewportType } = mediaOptions;
 
     if (minWidth) {
       mediaQueryParams.push(`(min-width: ${minWidth}px)`);
@@ -18,7 +18,7 @@ export default (breakpointOptions = breakpointDefaultOptions) => {
     let query = mediaQueryParams.join(' and ');
 
     return {
-      deviceType,
+      viewportType,
       query,
     };
   });

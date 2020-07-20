@@ -2,17 +2,17 @@ import viewportTypes from './enums/viewportTypes'
 
 export default [
   {
-    deviceType: viewportTypes.PHONE,
+    viewportType: viewportTypes.PHONE,
     minWidth: 0,
     maxWidth: 479,
   },
   {
-    deviceType: viewportTypes.TABLET,
+    viewportType: viewportTypes.TABLET,
     minWidth: 480,
     maxWidth: 767,
   },
   {
-    deviceType: viewportTypes.DESKTOP,
+    viewportType: viewportTypes.DESKTOP,
     minWidth: 768,
   },
 ];
