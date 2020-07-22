@@ -25,6 +25,8 @@ By default this works with the viewport types:
 
 But you can customize the viewports to use on the provider component.
 
+[🕹️ Playground](https://codesandbox.io/s/example-react-viewport-hook-t5x4b)
+
 ## Components
 
 ### ViewportProvider
