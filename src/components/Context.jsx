@@ -35,8 +35,6 @@ const buildViewportData = (
 
 const ViewportContext = createContext(buildViewportData(defaultViewportType));
 
-const { Provider } = ViewportContext;
-
 export const ViewportProvider = ({
     children,
     customViewportTypes,
@@ -80,7 +78,7 @@ export const ViewportProvider = ({
       return unsubscribeMediaWatcher;
     });
 
-    return <Provider value={viewportData}>{children}</Provider>;
+  return <ViewportContext.Provider value={viewportData}>{children}</ViewportContext.Provider>;
   };
 
 ViewportProvider.propTypes = {
