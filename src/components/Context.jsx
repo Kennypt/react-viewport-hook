@@ -2,13 +2,13 @@ import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import viewportTypesEnum, { defaultViewportType } from '../enums/viewportTypes';
 import capitalizeString from '../utils/capitalizeString';
-import checkIfClientSide from '../utils/checkIfClientSide';
+import isBrowser from '../utils/isBrowser';
 import mapServerSideViewportType from '../utils/mapServerSideViewportType';
 import findCurrentViewportType from '../utils/findCurrentViewportType';
 import mapMediaList from '../utils/mapMediaList';
 import { subscribeMediaWatcher, unsubscribeMediaWatcher } from '../utils/mediaWatcher';
 
-const isClientSide = checkIfClientSide();
+const isOnBrowser = isBrowser();
 const defaultViewportTypes = Object.values(viewportTypesEnum);
 let mediaList = mapMediaList();
 
@@ -48,7 +48,7 @@ export const ViewportProvider = ({
       );
     }
 
-    let currentViewportType = isClientSide
+    let currentViewportType = isOnBrowser
       ? findCurrentViewportType(mediaList)
       : mapServerSideViewportType({
           serverViewportType: initialViewportType,
