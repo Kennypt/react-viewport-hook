@@ -76,7 +76,7 @@ export const ViewportProvider = ({
         );
       }
       return unsubscribeMediaWatcher;
-    });
+    }, []);
 
   return <ViewportContext.Provider value={viewportData}>{children}</ViewportContext.Provider>;
   };
